@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 15:19:09 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/11 19:24:27 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/11 20:40:59 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,16 @@ void draw_squarre(t_game *game, int i, int j)
             else
             {
                 if (game->map[i][j] == '1')
-                    color = 0xFF0000;
-                else
+                    color = 0x754F46;
+                else if (game->map[i][j] == '0')
                     color = 0xFFFFFF;
+                else if (game->map[i][j] == 'E')
+                    color = 0xFF0000;
+                else if (game->map[i][j] == 'C')
+                    color = 0x37B02B;
+                else
+                    color = 0xF32661;
+                
             }
             my_mlx_pixel_put((j * game->sq_lenx) + x, (i * game->sq_leny) + y, game, color);
             y++;

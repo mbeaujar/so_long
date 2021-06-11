@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 22:24:09 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/11 14:04:19 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/11 21:07:47 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ int	parse_character(char *line)
 
 int	is_player(t_game *game, int i, int j)
 {
-	if (game->posx != -1 || game->posx != -1)
+	if (game->posx != -1 || game->posy != -1)
 		return (-1);
 	game->posx = i;
-	game->posx = j;
+	game->posy = j;
 	return (0);
 }
 
@@ -67,23 +67,21 @@ int	parse_map(t_game *game)
 	return (0);
 }
 
-int	init_var_parse_dimension(int *i, int *exit, int *collectible, char **map)
+int	init_var_parse_dimension(int *i, int *exit, char **map)
 {
 	*i = 0;
 	*exit = 0;
-	*collectible = 0;
 	return ((int)ft_strlen(map[0]));
 }
 
-int	parse_dimension(char **map)
+int	parse_dimension(t_game *game, char **map)
 {
 	int	i;
 	int	len;
 	int	j;
 	int	exit;
-	int	collectible;
 
-	len = init_var_parse_dimension(&i, &exit, &collectible, map);
+	len = init_var_parse_dimension(&i, &exit, map);
 	while (map[i])
 	{
 		j = 0;
@@ -92,14 +90,14 @@ int	parse_dimension(char **map)
 			if (map[i][j] == 'E')
 				exit++;
 			if (map[i][j] == 'C')
-				collectible++;
+				game->collectible++;
 			j++;
 		}
 		if (j != len)
 			return (-1);
 		i++;
 	}
-	if (exit == 0 || collectible == 0)
+	if (exit == 0 || game->collectible == 0)
 		return (-1);
 	return (0);
 }

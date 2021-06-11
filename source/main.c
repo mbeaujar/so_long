@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 21:48:01 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/11 19:26:15 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/11 21:19:51 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ void	init_struct(t_game *game)
 {
 	game->map = NULL;
 	game->posx = -1;
-	game->posx = -1;
+	game->posy = -1;
 	game->resolutionx = 1280;
 	game->resolutiony = 720;
 	game->lenx = 0;
 	game->leny = 0;
+	game->collectible = 0;
+	game->move = 0;
 }
 
 int	game_loop(t_game *game)
@@ -60,8 +62,9 @@ int	main(int argc, char **argv)
 	init_struct(&game);
 	if (parsing(&game, argv) == -1)
 		return (-1);
-	printmap(game.map);
+	//printmap(game.map);
 	calcule_len_squarre(&game);
+	//printf("pos x : %d\tpos y : %d\n", game.posx, game.posy);
 	launch_the_game(&game);
 	return (0);
 }

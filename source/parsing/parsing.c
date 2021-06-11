@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 22:09:16 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/11 15:44:38 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/11 21:25:29 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	read_map(t_game *game, int fd)
 		{
 			secure_free(line);
 			secure_free(map);
-			if (ret == 1)
+			if (ret == -1)
 				return (msg_error("read"));
 			return (1);
 		}
@@ -88,7 +88,7 @@ int	parsing(t_game *game, char **argv)
 		close(fd);
 		return (-1);
 	}
-	if (game->map == NULL || parse_dimension(game->map) || parse_map(game)
+	if (game->map == NULL || parse_dimension(game, game->map) || parse_map(game)
 		|| game->posx == -1 || game->posy == -1)
 	{
 		write(1, "Error\nInvalid map.\n", 19);

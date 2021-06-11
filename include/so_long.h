@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 21:44:14 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/11 17:26:10 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/11 21:15:17 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 # include "../libft/inc/libft.h"
 # include <sys/errno.h>
 
-# define FORWARD 119
-# define BACKWARD 115
-# define LEFT 97
-# define RIGHT 100
+# define FORWARD 13
+# define BACKWARD 1
+# define LEFT 0
+# define RIGHT 2
 # define ESC 53
 
 typedef struct s_game
@@ -35,9 +35,11 @@ typedef struct s_game
 	void	*win;
 	void	*img;
 	char	*addr;
+	int		move;
 	int		bpp;
 	int		sl;
 	int		ed;
+	int		collectible;
 	int		resolutionx;
 	int		resolutiony;
 	int		sq_lenx;
@@ -54,7 +56,7 @@ int		ft_strcmp(char *s1, char *s2);
 int		big_strlen(char **str);
 int		parsing(t_game *game, char **argv);
 int		parse_character(char *line);
-int		parse_dimension(char **map);
+int		parse_dimension(t_game *game, char **map);
 int		parse_map(t_game *game);
 
 void    keyforward(int keycode, t_game *game);
