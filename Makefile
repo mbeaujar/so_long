@@ -1,6 +1,6 @@
 NAME=so_long
 CC=clang
-CFLAGS= -Wall -Wextra -Werror
+CFLAGS= -Wall -Wextra -Werror -fsanitize=address
 RM=rm -f
 HEADER=include
 LIB_MLX=minilibx_opengl/libmlx.a
@@ -13,7 +13,10 @@ LIBRARY= -Llibft -lftmacos -Lminilibx_opengl -lmlx
 SRCS = source/main.c \
 	source/parsing/ft_strjoin.c \
 	source/parsing/parse_map.c \
-	source/parsing/parsing.c 
+	source/parsing/parsing.c \
+	source/key/arrow.c \
+	source/key/key.c \
+	source/engine/draw.c
 
 OBJS = ${SRCS:.c=.o}
 

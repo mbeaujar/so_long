@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 21:48:01 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/10 23:15:52 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/11 19:26:15 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,30 @@ void	init_struct(t_game *game)
 	game->map = NULL;
 	game->posx = -1;
 	game->posx = -1;
+	game->resolutionx = 1280;
+	game->resolutiony = 720;
+	game->lenx = 0;
+	game->leny = 0;
+}
+
+int	game_loop(t_game *game)
+{
+	//mlx_clear_window(game->mlx, game->win);
+	draw_map(game);
+	//my_mlx_pixel_put(5, 50, game, 0xFFFFFF);
+	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+	return (1);
 }
 
 void	launch_the_game(t_game *game)
 {
 	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, 800, 600, "./so_long");
+	game->win = mlx_new_window(game->mlx, game->resolutionx, game->resolutiony, "./so_long");
+	game->img = mlx_new_image(game->mlx, game->resolutionx, game->resolutiony);
+	game->addr = mlx_get_data_addr(game->img, &game->bpp, &game->sl, &game->ed);
+	mlx_hook(game->win, 2, 1L << 0, key, game);
+	mlx_hook(game->win, 17, 1L << 17, quit_the_game, game);
+	mlx_loop_hook(game->mlx, game_loop, game);
 	mlx_loop(game->mlx);
 }
 
@@ -30,6 +48,7 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
+	(void)argv;
 	if (argc != 2)
 	{
 		if (argc < 2)
@@ -41,6 +60,8 @@ int	main(int argc, char **argv)
 	init_struct(&game);
 	if (parsing(&game, argv) == -1)
 		return (-1);
+	printmap(game.map);
+	calcule_len_squarre(&game);
 	launch_the_game(&game);
 	return (0);
 }

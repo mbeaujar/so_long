@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 22:24:09 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/10 23:21:37 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/11 14:04:19 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,18 @@ int	parse_map(t_game *game)
 {
 	int	i;
 	int	j;
-	int	leny;
-	int	lenx;
 
 	i = 0;
-	leny = (int)ft_strlen(game->map[0]);
-	lenx = big_strlen(game->map);
+	game->leny = (int)ft_strlen(game->map[0]);
+	game->lenx = big_strlen(game->map);
 	while (game->map[i])
 	{
 		j = 0;
 		while (game->map[i][j])
 		{
-			if (game->map[i][j] != '1' && (i == 0 || i == lenx - 1))
+			if (game->map[i][j] != '1' && (i == 0 || i == game->lenx - 1))
 				return (1);
-			if (game->map[i][j] != '1' && (j == 0 || j == leny - 1))
+			if (game->map[i][j] != '1' && (j == 0 || j == game->leny - 1))
 				return (1);
 			if (game->map[i][j] == 'P' && is_player(game, i, j) == -1)
 				return (1);

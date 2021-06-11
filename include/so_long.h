@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 21:44:14 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/10 23:07:25 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/11 17:26:10 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,29 @@
 # include "../libft/inc/libft.h"
 # include <sys/errno.h>
 
+# define FORWARD 119
+# define BACKWARD 115
+# define LEFT 97
+# define RIGHT 100
+# define ESC 53
+
 typedef struct s_game
 {
 	int		posx;
 	int		posy;
 	void	*mlx;
-	void	*img;
 	void	*win;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		sl;
+	int		ed;
 	int		resolutionx;
 	int		resolutiony;
+	int		sq_lenx;
+	int		sq_leny;
+	int		lenx;
+	int		leny;
 	char	**map;
 	int		fd_map;
 }		t_game;
@@ -42,5 +56,17 @@ int		parsing(t_game *game, char **argv);
 int		parse_character(char *line);
 int		parse_dimension(char **map);
 int		parse_map(t_game *game);
+
+void    keyforward(int keycode, t_game *game);
+void keybackward(int keycode, t_game *game);
+void keyleft(int keycode, t_game *game);
+void keyright(int keycode, t_game *game);
+void free_tab(char **str);
+int key(int keycode, t_game *game);
+int quit_the_game(t_game *game);
+void calcule_len_squarre(t_game *game);
+void printmap(char **str);
+void    my_mlx_pixel_put(int x, int y, t_game *game, unsigned int color);
+void draw_map(t_game *game);
 
 #endif 

@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 17:36:43 by beaujardm         #+#    #+#             */
-/*   Updated: 2021/06/01 17:17:52 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/11 15:46:24 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlen(const char *s)
 	unsigned int	i;
 
 	i = 0;
-	if (!s)
+	if (!s || !*s)
 		return (0);
 	while (s[i] != '\0')
 		i++;
