@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 21:48:01 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/11 21:19:51 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/12 20:27:10 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	init_struct(t_game *game)
 	game->map = NULL;
 	game->posx = -1;
 	game->posy = -1;
-	game->resolutionx = 1280;
-	game->resolutiony = 720;
+	game->resolutionx = 800;
+	game->resolutiony = 600;
 	game->lenx = 0;
 	game->leny = 0;
 	game->collectible = 0;
@@ -40,6 +40,8 @@ void	launch_the_game(t_game *game)
 	game->win = mlx_new_window(game->mlx, game->resolutionx, game->resolutiony, "./so_long");
 	game->img = mlx_new_image(game->mlx, game->resolutionx, game->resolutiony);
 	game->addr = mlx_get_data_addr(game->img, &game->bpp, &game->sl, &game->ed);
+	open_texture_exit(game);
+	open_texture_collec(game);
 	mlx_hook(game->win, 2, 1L << 0, key, game);
 	mlx_hook(game->win, 17, 1L << 17, quit_the_game, game);
 	mlx_loop_hook(game->mlx, game_loop, game);

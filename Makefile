@@ -16,7 +16,9 @@ SRCS = source/main.c \
 	source/parsing/parsing.c \
 	source/key/arrow.c \
 	source/key/key.c \
-	source/engine/draw.c
+	source/engine/draw.c \
+	source/engine/texture.c \
+	source/engine/sprites.c
 
 OBJS = ${SRCS:.c=.o}
 

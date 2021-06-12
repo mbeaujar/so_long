@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 21:44:14 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/11 21:15:17 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/12 20:26:26 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,20 @@
 # define LEFT 0
 # define RIGHT 2
 # define ESC 53
+
+# define NONE 0xFF000000
+# define BLACK 0x00000000
+
+typedef struct s_image 
+{
+	void *text;
+	char *addr;
+	int height;
+	int width;
+	int bpp;
+	int sl;
+	int ed;
+} t_image;
 
 typedef struct s_game
 {
@@ -48,6 +62,8 @@ typedef struct s_game
 	int		leny;
 	char	**map;
 	int		fd_map;
+	t_image exit;
+	t_image collec;
 }		t_game;
 
 char	*ft_strjoin_endl(char *s1, char *s2);
@@ -70,5 +86,9 @@ void calcule_len_squarre(t_game *game);
 void printmap(char **str);
 void    my_mlx_pixel_put(int x, int y, t_game *game, unsigned int color);
 void draw_map(t_game *game);
+void draw_exit(t_game *game, int i, int j);
+void draw_apple(t_game *game, int i, int j);
+void open_texture_exit(t_game *game);
+void open_texture_collec(t_game *game);
 
 #endif 
