@@ -41,10 +41,10 @@ all : $(NAME)
 
 $(NAME) : $(OBJS)
 ifeq ("$(wildcard minilibx_opengl/libmlx.a)","")
-	@make -C minilibx_opengl
+	@make -C $(PATH_MLX)
 endif
 ifeq ("$(wildcard libft/libftmacos.a)","")
-	@make re -C libft
+	@make re -C $(PATH_LIB)
 endif
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBRARY) $(FLAGS_MLX) -o $(NAME)
 
