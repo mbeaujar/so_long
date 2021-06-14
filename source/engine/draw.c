@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 15:19:09 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/14 15:46:17 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/14 15:50:29 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	which_rgb(t_game *game, int i, int j, int pos[2])
 		else if (game->map[i][j] == '0')
 			return (0xFFFFFF);
 	}
+	return (0);
 }
 
 void	draw_squarre(t_game *game, int i, int j)
