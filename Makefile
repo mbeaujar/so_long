@@ -19,12 +19,8 @@ CC=clang
 CFLAGS= -Wall -Wextra -Werror -fsanitize=address
 RM=rm -f
 HEADER=include
-LIB_MLX=minilibx_opengl/libmlx.a
 LIB_FT=libft/libftmacos.a
 PATH_LIB=libft/
-PATH_MLX=minilibx_opengl
-FLAGS_MLX=-framework OpenGL -framework Appkit 
-LIBRARY= -Llibft -lftmacos -Lminilibx_opengl -lmlx
 
 SRCS = source/main.c \
 	source/parsing/ft_strjoin.c \
