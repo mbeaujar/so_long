@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 15:19:09 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/14 13:38:23 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/14 15:46:17 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,46 +30,51 @@ void	calcule_len_squarre(t_game *game)
 	game->sq_leny = (game->resolutiony / game->lenx) + 1;
 }
 
-void	draw_squarre(t_game *game, int i, int j)
+int	which_rgb(t_game *game, int i, int j, int pos[2])
 {
-	int x;
-	int y;
-	unsigned int color;
-
-	x = 0;
-	while (x < game->sq_lenx)
+	if (pos[0] == 0 && j > 0 && game->map[i][j - 1] != game->map[i][j])
+		return (0x000000);
+	else if (pos[0] == game->sq_lenx - 1 && j + 1 < game->leny
+		&& game->map[i][j + 1] != game->map[i][j])
+		return (0x000000);
+	else if (pos[1] == 0 && i > 0 && game->map[i - 1][j] != game->map[i][j])
+		return (0x000000);
+	else if (pos[1] == game->sq_leny - 1 && i + 1 < game->lenx
+		&& game->map[i + 1][j] != game->map[i][j])
+		return (0x000000);
+	else
 	{
-		y = 0;
-		while (y < game->sq_leny)
-		{
-			if (x == 0 && j > 0 && game->map[i][j - 1] != game->map[i][j])
-				color = 0x000000;
-			else if (x == game->sq_lenx - 1 && j + 1 < game->leny && game->map[i][j + 1] != game->map[i][j])
-				color = 0x000000;
-			else if (y == 0 && i > 0 && game->map[i - 1][j] != game->map[i][j])
-				color = 0x000000;
-			else if (y == game->sq_leny - 1 && i + 1 < game->lenx && game->map[i + 1][j] != game->map[i][j])
-				color = 0x000000;
-			else
-			{
-				if (game->map[i][j] == '1')
-					color = 0x754F46;
-				else if (game->map[i][j] == '0')
-					color = 0xFFFFFF;
-				else
-					color = 0xF32661;
-			}
-			my_mlx_pixel_put((j * game->sq_lenx) + x, (i * game->sq_leny) + y, game, color);
-			y++;
-		}
-		x++;
+		if (game->map[i][j] == '1')
+			return (0x754F46);
+		else if (game->map[i][j] == '0')
+			return (0xFFFFFF);
 	}
 }
 
-void draw_map(t_game *game)
+void	draw_squarre(t_game *game, int i, int j)
 {
-	int i;
-	int j;
+	int	pos[2];
+	int	color;
+
+	pos[0] = 0;
+	while (pos[0] < game->sq_lenx)
+	{
+		pos[1] = 0;
+		while (pos[1] < game->sq_leny)
+		{
+			color = which_rgb(game, i, j, pos);
+			my_mlx_pixel_put((j * game->sq_lenx) + pos[0],
+				(i * game->sq_leny) + pos[1], game, color);
+			pos[1]++;
+		}
+		pos[0]++;
+	}
+}
+
+void	draw_map(t_game *game)
+{
+	int	i;
+	int	j;
 
 	i = 0;
 	while (game->map[i])
@@ -83,7 +88,7 @@ void draw_map(t_game *game)
 				draw_texture(game, i, j, game->collec);
 			else if (game->map[i][j] == 'P')
 				draw_texture(game, i, j, game->minion[game->anim]);
- 			else if (game->map[i][j] == 'N')
+			else if (game->map[i][j] == 'N')
 				draw_texture(game, i, j, game->enemy);
 			else
 				draw_squarre(game, i, j);

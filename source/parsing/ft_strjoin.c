@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 19:24:48 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/12 20:25:52 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/14 15:27:34 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int	big_strlen(char **str)
 	return (i);
 }
 
-void free_tab(char **str)
+void	free_tab(char **str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!str || !*str)

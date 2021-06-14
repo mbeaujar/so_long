@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 21:48:01 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/14 13:47:23 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/14 15:46:25 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	init_struct(t_game *game)
 	game->anim = 0;
 }
 
-void display_movement(t_game *game)
+void	display_movement(t_game *game)
 {
-	char *str;
+	char	*str;
 
 	str = ft_itoa(game->move);
 	mlx_string_put(game->mlx, game->win, 0, 20, 0xFFFFFF, str);
@@ -37,7 +37,7 @@ void display_movement(t_game *game)
 
 int	game_loop(t_game *game)
 {
-	static int count = 0;
+	static int	count = 0;
 
 	if (count > 100)
 	{
@@ -54,7 +54,8 @@ int	game_loop(t_game *game)
 void	launch_the_game(t_game *game)
 {
 	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, game->resolutionx, game->resolutiony, "./so_long");
+	game->win = mlx_new_window(game->mlx,
+			game->resolutionx, game->resolutiony, "./so_long");
 	game->img = mlx_new_image(game->mlx, game->resolutionx, game->resolutiony);
 	game->addr = mlx_get_data_addr(game->img, &game->bpp, &game->sl, &game->ed);
 	open_texture_exit(game);
@@ -85,9 +86,7 @@ int	main(int argc, char **argv)
 	init_struct(&game);
 	if (parsing(&game, argv) == -1)
 		return (-1);
-	//printmap(game.map);
 	calcule_len_squarre(&game);
-	//printf("pos x : %d\tpos y : %d\n", game.posx, game.posy);
 	launch_the_game(&game);
 	return (0);
 }

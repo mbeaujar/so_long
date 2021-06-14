@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 22:09:16 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/11 21:25:29 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/14 15:38:41 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,15 @@ int	read_map(t_game *game, int fd)
 		}
 		map = ft_strjoin_endl(map, line);
 		free(line);
-		if (ret == 0)
-			break ;
 	}
 	game->map = ft_split(map, '\n');
 	free(map);
 	return (game->map == NULL);
 }
 
-void printmap(char **str)
+void	printmap(char **str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!str)
