@@ -1,25 +1,28 @@
 
-OS=$(shell uname)
+UNAME=$(shell uname)
 
-ifeq ($(OS), Darwin)
+ifeq ($(UNAME), Darwin)
+	CFLAGS = -D MACOS=1
 	LIB_MLX=minilibx_opengl/libmlx.a
 	PATH_MLX=minilibx_opengl
 	FLAGS_MLX=-framework OpenGL -framework Appkit 
 	LIBRARY= -Llibft -lftmacos -Lminilibx_opengl -lmlx
+	LIB_FT=libft/libftmacos.a
 endif
-ifeq ($(OS), Linux)
+ifeq ($(UNAME), Linux)
+	CFLAGS = -D LINUX=1
 	LIB_MLX=minilibx_linux/libmlx.a
 	PATH_MLX=minilibx_linux
+	LIBRARY= -Llibft -lftlinux -Lminilibx_linux -lmlx
 	FLAGS_MLX=-L/usr/lib -lXext -lX11 -lm
-	LIBRARY= -Llibft -lftmacos -Lminilibx_linux -lmlx
+	LIB_FT=libft/libftlinux.a
 endif
 
 NAME=so_long
 CC=clang
-CFLAGS= -Wall -Wextra -Werror -fsanitize=address
+CFLAGS += -Wall -Wextra -Werror -fsanitize=address
 RM=rm -f
 HEADER=include
-LIB_FT=libft/libftmacos.a
 PATH_LIB=libft/
 
 SRCS = source/main.c \
@@ -40,10 +43,10 @@ OBJS = ${SRCS:.c=.o}
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-ifeq ("$(wildcard minilibx_opengl/libmlx.a)","")
+ifeq ("$(wildcard $(LIB_MLX))","")
 	@make -C $(PATH_MLX)
 endif
-ifeq ("$(wildcard libft/libftmacos.a)","")
+ifeq ("$(wildcard $(LIB_FT))","")
 	@make re -C $(PATH_LIB)
 endif
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBRARY) $(FLAGS_MLX) -o $(NAME)

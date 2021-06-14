@@ -29,7 +29,8 @@ int clear_key(int key, t_game *game)
 
 int key(int keycode, t_game *game)
 {
-    game->anim = 1;
+    if (keycode == FORWARD || keycode == BACKWARD || keycode == LEFT || keycode == RIGHT)
+        game->anim = 1;
     if (keycode == FORWARD)
         keyforward(keycode, game);
     if (keycode == BACKWARD)
