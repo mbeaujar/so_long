@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 21:44:14 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/14 12:08:14 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/14 14:43:59 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,21 @@
 # include "../libft/inc/libft.h"
 # include <sys/errno.h>
 
-# define FORWARD 13
-# define BACKWARD 1
-# define LEFT 0
-# define RIGHT 2
-# define ESC 53
+# ifndef MACOS
+#  define FORWARD 13
+#  define BACKWARD 1
+#  define LEFT 0
+#  define RIGHT 2
+#  define ESC 53
+# endif
 
+# ifndef LINUX
+#  define FORWARD 119
+#  define BACKWARD 115
+#  define LEFT 97
+#  define RIGHT 100
+#  define ESC 65307
+# endif
 # define NONE 0xFF000000
 # define BLACK 0x00000000
 
