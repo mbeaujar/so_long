@@ -1,3 +1,19 @@
+
+OS=$(shell uname)
+
+ifeq ($(OS), Darwin)
+	LIB_MLX=minilibx_opengl/libmlx.a
+	PATH_MLX=minilibx_opengl
+	FLAGS_MLX=-framework OpenGL -framework Appkit 
+	LIBRARY= -Llibft -lftmacos -Lminilibx_opengl -lmlx
+endif
+ifeq ($(OS), Linux)
+	LIB_MLX=minilibx_linux/libmlx.a
+	PATH_MLX=minilibx_linux
+	FLAGS_MLX=-L/usr/lib -lXext -lX11 -lm
+	LIBRARY= -Llibft -lftmacos -Lminilibx_linux -lmlx
+endif
+
 NAME=so_long
 CC=clang
 CFLAGS= -Wall -Wextra -Werror -fsanitize=address
