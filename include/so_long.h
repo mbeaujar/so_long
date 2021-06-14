@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 21:44:14 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/12 20:26:26 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/14 12:08:14 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,9 @@ typedef struct s_game
 	int		fd_map;
 	t_image exit;
 	t_image collec;
+	t_image minion[2];
+	t_image enemy;
+	int	anim;
 }		t_game;
 
 char	*ft_strjoin_endl(char *s1, char *s2);
@@ -86,9 +89,11 @@ void calcule_len_squarre(t_game *game);
 void printmap(char **str);
 void    my_mlx_pixel_put(int x, int y, t_game *game, unsigned int color);
 void draw_map(t_game *game);
-void draw_exit(t_game *game, int i, int j);
-void draw_apple(t_game *game, int i, int j);
+void draw_texture(t_game *game, int i, int j, t_image image);
 void open_texture_exit(t_game *game);
 void open_texture_collec(t_game *game);
+void open_texture_minion(t_game *game, int i, char *path);
+void open_texture_enemy(t_game *game);
+int clear_key(int key, t_game *game);
 
 #endif 

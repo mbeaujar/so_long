@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 22:24:09 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/11 21:07:47 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/14 11:45:19 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	parse_character(char *line)
 	while (*line)
 	{
 		if (*line != '1' && *line != '0'
-			&& *line != 'C' && *line != 'E' && *line != 'P')
+			&& *line != 'C' && *line != 'E' && *line != 'P' && *line != 'N')
 		{
 			write(1, "Error\nInvalid character in the map.\n", 36);
 			return (1);

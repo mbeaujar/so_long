@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 15:19:09 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/12 20:26:48 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/14 13:38:23 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,6 @@ void	my_mlx_pixel_put(int x, int y, t_game *game, unsigned int color)
 	*(unsigned int *)pixel = color;
 }
 
-/* void	my_mlx_pixel_put(int x, int y, t_game *game, unsigned int color)
-{
-	char *dst;
-
-	dst = game->addr + (y * game->sl + x * (game->bpp / 8));
-	*(unsigned int *)dst = color;
-}
- */
 void	calcule_len_squarre(t_game *game)
 {
 	game->sq_lenx = (game->resolutionx / game->leny) + 1;
@@ -64,10 +56,6 @@ void	draw_squarre(t_game *game, int i, int j)
 					color = 0x754F46;
 				else if (game->map[i][j] == '0')
 					color = 0xFFFFFF;
-				else if (game->map[i][j] == 'E')
-					color = 0xFF0000;
-				else if (game->map[i][j] == 'C')
-					color = 0x37B02B;
 				else
 					color = 0xF32661;
 			}
@@ -90,9 +78,13 @@ void draw_map(t_game *game)
 		while (game->map[i][j])
 		{
 			if (game->map[i][j] == 'E')
-				draw_exit(game, i, j);
+				draw_texture(game, i, j, game->exit);
 			else if (game->map[i][j] == 'C')
-				draw_apple(game, i, j);
+				draw_texture(game, i, j, game->collec);
+			else if (game->map[i][j] == 'P')
+				draw_texture(game, i, j, game->minion[game->anim]);
+ 			else if (game->map[i][j] == 'N')
+				draw_texture(game, i, j, game->enemy);
 			else
 				draw_squarre(game, i, j);
 			j++;

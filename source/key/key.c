@@ -6,7 +6,7 @@
 /*   By: mbeaujar <mbeaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 14:15:20 by mbeaujar          #+#    #+#             */
-/*   Updated: 2021/06/11 15:30:29 by mbeaujar         ###   ########.fr       */
+/*   Updated: 2021/06/14 13:44:24 by mbeaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,16 @@ int quit_the_game(t_game *game)
     return (1);
 }
 
+int clear_key(int key, t_game *game)
+{
+    (void)key;
+    game->anim = 0;
+    return (1);
+}
+
 int key(int keycode, t_game *game)
 {
+    game->anim = 1;
     if (keycode == FORWARD)
         keyforward(keycode, game);
     if (keycode == BACKWARD)
