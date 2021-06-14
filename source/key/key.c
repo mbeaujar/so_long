@@ -14,8 +14,17 @@
 
 int quit_the_game(t_game *game)
 {
-    (void)game;
-    //free_tab(game->map);
+    free_tab(game->map);
+    mlx_destroy_image(game->mlx, game->exit.text);
+    mlx_destroy_image(game->mlx, game->collec.text);
+    mlx_destroy_image(game->mlx, game->minion[0].text);
+    mlx_destroy_image(game->mlx, game->minion[1].text);
+    mlx_destroy_image(game->mlx, game->enemy.text);
+    mlx_destroy_image(game->mlx, game->img);
+    mlx_destroy_window(game->mlx, game->win);
+    mlx_loop_end(game->mlx);
+    mlx_destroy_display(game->mlx);
+    free(game->mlx);
     exit(0);
     return (1);
 }

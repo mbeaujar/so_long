@@ -20,7 +20,7 @@ endif
 
 NAME=so_long
 CC=clang
-CFLAGS += -Wall -Wextra -Werror -fsanitize=address
+CFLAGS += -Wall -Wextra -Werror
 RM=rm -f
 HEADER=include
 PATH_LIB=libft/

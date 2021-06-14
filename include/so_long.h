@@ -17,11 +17,11 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include "../minilibx_opengl/mlx.h"
 # include "../libft/inc/libft.h"
 # include <sys/errno.h>
 
-# ifndef MACOS
+# ifndef LINUX
+# include "../minilibx_opengl/mlx.h"
 #  define FORWARD 13
 #  define BACKWARD 1
 #  define LEFT 0
@@ -29,13 +29,15 @@
 #  define ESC 53
 # endif
 
-# ifndef LINUX
+# ifndef MACOS
+# include "../minilibx_linux/mlx.h"
 #  define FORWARD 119
 #  define BACKWARD 115
 #  define LEFT 97
 #  define RIGHT 100
 #  define ESC 65307
 # endif
+
 # define NONE 0xFF000000
 # define BLACK 0x00000000
 

@@ -61,6 +61,7 @@ int	read_map(t_game *game, int fd)
 			break ;
 	}
 	game->map = ft_split(map, '\n');
+	free(map);
 	return (game->map == NULL);
 }
 
