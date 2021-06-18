@@ -65,7 +65,7 @@ void	launch_the_game(t_game *game)
 	open_texture_enemy(game);
 	mlx_hook(game->win, 2, 1L << 0, key, game);
 	mlx_hook(game->win, 3, (1L << 1), clear_key, &game);
-	mlx_hook(game->win, 17, 1L << 17, quit_the_game, game);
+	mlx_hook(game->win, CLOSE, 1L << 17, quit_the_game, game);
 	mlx_loop_hook(game->mlx, game_loop, game);
 	mlx_loop(game->mlx);
 }

@@ -27,6 +27,7 @@
 #  define LEFT 0
 #  define RIGHT 2
 #  define ESC 53
+#  define CLOSE 17
 # endif
 
 # ifndef MACOS
@@ -36,6 +37,7 @@
 #  define LEFT 97
 #  define RIGHT 100
 #  define ESC 65307
+#  define CLOSE 33
 # endif
 
 # define NONE 0xFF000000
