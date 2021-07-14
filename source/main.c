@@ -39,7 +39,7 @@ int	game_loop(t_game *game)
 {
 	static int	count = 0;
 
-	if (count > 100)
+	if (count > 10)
 	{
 		count = 0;
 		game->anim = 0;
@@ -47,7 +47,8 @@ int	game_loop(t_game *game)
 	draw_map(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	display_movement(game);
-	count++;
+	if (game->anim == 1)
+		count++;
 	return (1);
 }
 
